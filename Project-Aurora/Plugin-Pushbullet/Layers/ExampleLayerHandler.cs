@@ -7,6 +7,7 @@ using Aurora.Settings.Layers;
 using System.Windows.Controls;
 using Aurora.EffectsEngine;
 using Aurora.Profiles;
+using Plugin_Pushbullet.Pushbullet;
 
 namespace Plugin_Example.Layers
 {
@@ -31,8 +32,11 @@ namespace Plugin_Example.Layers
         {
             EffectLayer solidcolor_layer = new EffectLayer();
 
-            if(DateTime.Now.Second > 0 && DateTime.Now.Second < 30)
+            //if(DateTime.Now.Second > 0 && DateTime.Now.Second < 30)
+            if(DataStream.Calls.Count > 0)
                 solidcolor_layer.Set(Properties.Sequence, Properties.PrimaryColor);
+            
+
 
 
             return solidcolor_layer;
