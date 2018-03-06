@@ -9,11 +9,22 @@
              x:Class="Plugin_PushBullet.Layers.Control_ExampleLayer"
              mc:Ignorable="d" Loaded="UserControl_Loaded">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Primary Color:" VerticalAlignment="Top" Margin="0,4,0,0"/>
-        <xctk:ColorPicker x:Name="ColorPicker_primaryColor" HorizontalAlignment="Left" Height="24" Margin="36,0,0,0" VerticalAlignment="Top" Width="139" ColorMode="ColorCanvas" SelectedColorChanged="ColorPicker_primaryColor_SelectedColorChanged" UsingAlphaChannel="True"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Secondary Color:" VerticalAlignment="Top" Margin="0,29,0,0"/>
-        <xctk:ColorPicker x:Name="ColorPicker_secondaryColor" HorizontalAlignment="Left" Height="24" Margin="36,29,0,0" VerticalAlignment="Top" Width="139" ColorMode="ColorCanvas" SelectedColorChanged="ColorPicker_secondaryColor_SelectedColorChanged" UsingAlphaChannel="True"/>
-        
-        <Controls:KeySequence x:Name="KeySequence_keys" Margin="0,58,-44,-5" HorizontalAlignment="Left" Width="230" RecordingTag="ExampleLayer" Title="Affected Keys" SequenceUpdated="KeySequence_keys_SequenceUpdated"/>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Notification Type:" VerticalAlignment="Top" />
+            <ComboBox x:Name="ComboBox_NotificationType" SelectionChanged="ComboBox_NotificationType_OnSelectionChanged">
+                <ComboBoxItem Content="PhoneCall"/>
+                <ComboBoxItem Content="Whatsapp"/>
+                <ComboBoxItem Content="Snapchat"/>
+                <ComboBoxItem Content="Email"/>
+                <ComboBoxItem Content="Facebook"/>
+            </ComboBox>
+            
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Color:" VerticalAlignment="Top" />
+            <xctk:ColorPicker x:Name="ColorPicker_Color" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="139" ColorMode="ColorCanvas" SelectedColorChanged="ColorPicker_Color_SelectedColorChanged" UsingAlphaChannel="True"/>
+
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Keys:" VerticalAlignment="Top" />
+            <Controls:KeySequence x:Name="Selected_keys" HorizontalAlignment="Left" Width="230" RecordingTag="PushBulletLayer" Title="Affected Keys" SequenceUpdated="Selected_keys_SequenceUpdated"/>
+            
+        </StackPanel>
     </Grid>
 </UserControl>

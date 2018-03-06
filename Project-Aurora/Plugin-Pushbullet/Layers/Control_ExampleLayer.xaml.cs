@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Aurora.Utils;
+using Plugin_PushBullet.Models;
 
 namespace Plugin_PushBullet.Layers
 {
@@ -21,6 +22,7 @@ namespace Plugin_PushBullet.Layers
     public partial class Control_ExampleLayer : UserControl
     {
         private bool settingsset = false;
+        private MobileApplicationType CurrentNotificationType = MobileApplicationType.None;
 
         public Control_ExampleLayer()
         {
@@ -38,29 +40,28 @@ namespace Plugin_PushBullet.Layers
         {
             if(this.DataContext is PushBulletLayerHandler && !settingsset)
             {
-                this.ColorPicker_primaryColor.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
-                this.KeySequence_keys.Sequence = (this.DataContext as PushBulletLayerHandler).Properties._Sequence;
+                this.ColorPicker_Color.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
+                this.Selected_keys.Sequence = (this.DataContext as PushBulletLayerHandler).Properties.;
 
                 settingsset = true;
             }
         }
 
-        private void ColorPicker_primaryColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        private void ColorPicker_Color_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
-            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Xceed.Wpf.Toolkit.ColorPicker && (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue)
-                (this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
-        }
-        private void ColorPicker_secondaryColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Xceed.Wpf.Toolkit.ColorPicker && (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue)
-                (this.DataContext as PushBulletLayerHandler).Properties._SecondaryColor = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
+            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler &&
+                sender is Xceed.Wpf.Toolkit.ColorPicker &&
+                (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue && CurrentNotificationType != MobileApplicationType.None)
+            {
+
+                (this.DataContext as PushBulletLayerHandler).Properties.ApplicationColors[CurrentNotificationType] = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
+            }
         }
 
-
-        private void KeySequence_keys_SequenceUpdated(object sender, EventArgs e)
+        private void Selected_keys_SequenceUpdated(object sender, EventArgs e)
         {
-            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Aurora.Controls.KeySequence)
-                (this.DataContext as PushBulletLayerHandler).Properties._Sequence = (sender as Aurora.Controls.KeySequence).Sequence;
+            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Aurora.Controls.KeySequence && CurrentNotificationType != MobileApplicationType.None)
+                (this.DataContext as PushBulletLayerHandler).Properties.ApplicationKeys[CurrentNotificationType] = (sender as Aurora.Controls.KeySequence).Sequence;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -68,6 +69,31 @@ namespace Plugin_PushBullet.Layers
             SetSettings();
 
             this.Loaded -= UserControl_Loaded;
+        }
+
+
+        private void ComboBox_NotificationType_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (ComboBoxItem) ComboBox_NotificationType.SelectedItem;
+
+            switch (item.Content?.ToString())
+            {
+                case "PhoneCall":
+                    CurrentNotificationType = MobileApplicationType.Phone;
+                    break;
+                case "Whatsapp":
+                    CurrentNotificationType = MobileApplicationType.Whatsapp;
+                    break;
+                case "Email":
+                    CurrentNotificationType = MobileApplicationType.Email;
+                    break;
+                case "Snapchat":
+                    CurrentNotificationType = MobileApplicationType.Snapchat;
+                    break;
+                case "Facebook":
+                    CurrentNotificationType = MobileApplicationType.Facebook;
+                    break;
+            }
         }
     }
 }

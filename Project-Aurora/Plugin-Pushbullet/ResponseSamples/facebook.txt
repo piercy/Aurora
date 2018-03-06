@@ -1,0 +1,32 @@
+{
+	"type": "push",
+	"targets": ["stream"],
+	"push": {
+		"type": "mirror",
+		"source_device_iden": "ujCrQd28ARosjAiVsKnSTs",
+		"source_user_iden": "ujCrQd28ARo",
+		"client_version": 289,
+		"dismissible": true,
+		"icon": "\/9j\/4AAQSkZJRgABAQAAAQABAAD\/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj\/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj\/wAARCABgAGADASIAAhEBAxEB\/8QAHAAAAQUBAQEAAAAAAAAAAAAABQMEBgcIAgEA\/8QANhAAAgEDAwIEBAMIAgMAAAAAAQIDAAQRBRIhBjEHE0FRFCJhcTKBkQgjQlKhseHwFRYzwdH\/xAAWAQEBAQAAAAAAAAAAAAAAAAABAAL\/xAAVEQEBAAAAAAAAAAAAAAAAAAAAAf\/aAAwDAQACEQMRAD8Ati2HyfnRS2\/8a0Ktm+Sn8EuFApIrCyRRvLM6xxICzM5wAPcmhCeInTqTeVE804BwHSPCn7E1F\/EnUJbr4HQ7cssM2Zrxh6Rr2U\/c0nolxpV5bpBC1tJgbfKZRk474qS3tG1aw1O3MtjKpAGWU8FfuKHz9ZaTFcNCJWkZTjKDIql9WM+l69bQ6JcSQPOrK6liVVcc1yml39svnpOswUElR3P2oC9tN6g03VHMMMw831jcYNL3tnHsLKtZ\/OtNbNBPvKndtLDjB+tXP05r66voSSbszIdkn3Hr+dRJXcIBPFDnQA0Qu5sng0Olbuc0omfX2pvI21STXbvwfamc0mVPoKkRjfaAM4PtTqOfAGe\/pVUL40aBcDM+n30LfQK3\/umWqeNGmwxgaXY3E7Ejc03yKo9fqaAnt4iDqu4YsXMwUlScgcYxTODTNKt+ome3T4eUI0qZBEbN24Pvn0oT1Pqkujavp\/USbp9Iu0RmZBnyyR6\/SilpdaUljLfadq6pA53NA77+T3G09u\/pUkGu9c1HSuoIxrCmeSPdtKDOVzUxuOqk034QTWzmO5AYEAkgHtx3oN1Wg0fR4Ne1CPDX9ysaxuOUi9D9M0Qn6ksrpLScQRPHCu0KSCx9iPYVIA6suRa6iTgm2uMNsHcfUfrU\/wDC\/USsl1bhyySRq4PoSP8AFUp4idRG41aEw8MvGPYduan\/AIX3jG705t2Q7GMn7ipLimnBzQvULieJWaJBIAM7QefypS43iQhQxwe49abMJifwt98Uk3s9Yt9QgLwPyvDqeCp9jQ\/W9VjsrV5XZQFGeTQ3qO0vbSf\/AJDSYv34GJIewlH\/ANoNC2n9X2k1lqBltLsDL25bYXx\/Dn2+1AZvWTKnnmvUYFcewoes+4YzzSyS8\/fioLJh8R9WHQ+naBptoZpYSRO7R+YGiByq4\/3tUi8Pdd6THVFjPepJHdSt5ItTCSqSnjcfQ89qR\/Ztvov+x6lo90qvHe229Aw\/iQ8\/0J\/SpX4n9A6XBZ3ms2cIt9URFdZEJA3DnOPfjvUTn9o+TOmaZZ9mLu5\/TFU5adXyW9jHYW9kiXW0I8xOcgeoFGOs+qZuotA0mbUJDJdJGVMmeWOec\/WoPpH7yWaXILk7QcdqkITRNdXXcvKxyWNWd0fOdMWxd87fMBP07c1X2mxj4zaGBLlUz7Lnn\/frVgJKipbA55kOOak0DC4lt4pEOVdQQaSlyD3pHQZVl0ezGQGKBVBPJx7U5lIUkMQOcfnSQbUkJB5PFCo+nLDWmlW5hAlCfJMpw6nPcGpBeRkjA+1Ur4heJ1\/oetXGmdNhIp4h5c08i5APsooDOUbEgE05jfIx60PVj6Gl42JANAT\/AMKLw23iD07MGKEXqIWBxw3B\/vWpuvVi\/wCImSUDZLmNcn1JrGnS978J1HpU7HCxXcMhP0Dg1rXxdmuLPQmnt32NaSLMHPZgDyP60mKW8VOjrfRtFt73Sz5MMfyyRMcgk\/xD\/cVC+m1RYnUYzuz3znIqz\/ET4jXdBU2QEiFQ2F5X3qp7KZbaUQcpKpG9GGD9agN6cdk08jDCrOqDntU0sGWSSJW7q3Y+nNQyHbNY6k687XRvt82KkQndZoJU\/E0au339aisbXtK1PUIdPfTbC4m8sfLMku0Jn8XGc1MY7OROnIEuDsu\/hVjIJyd+3B59+O9Peg7ppNEAB5BB4NFr+Z9sYG0\/Pg5+1SRaaCSLT4ZVB88QjBJySwH96yr1XczXHUOoS3GVmeZi4Poc1r6a5ZIjEZSGz+7b+c+xrIPV0xm6l1KWQBXadyy+3NVVQha7Rtp57VwteihmnAkKgOn4l5FaB8dOtY7rpPSY7O6DPq1nFNJGDyEKg5I9Ocis7AkV3cXEtwyGaRnKII13HOFHAA+lJibdG9b3miolvcSNNp7Ngq\/JT\/FTLXdLsOoLUX2nsglxncvf7Gqpt47aTp2+lc7biOSMRqPUHOTSnTPUNzotwNhL27HDRk\/1FSTrQoxDaXkMxGWZVb64b\/FGbBkkvvLb5gEC0GtGjvjI8TgBuQAeQe9PtBgmF6rOpId8FvrUV8eHkxTSxFIpLMNy4HtxUguZUA+aN9+f5aA9BRxPaeXLJtkiyVz9aO3kDpkxspTPrUkd1vWNPs7WSXVHkt3U7Y1QFmY47qB3NZN1yYzaveSbmIaVjluCefWtUdQQXFzGxs5\/KcKdzqDhx6x5zWUdVDLql2JNoIlbgdu9VFAFr2uQcV1QK+rlu9KJG0jYUZ4J\/SjXRekQa71DDp11L5KTJJiT+VghIP2yKjAVJXWCSMfgbBP5VwhwcjvXUqmGSSIkEqxUlTkHBrhaUf6fe3VvcrLDOyMO5zwasvpHqmS4ubKzvWijgMgDSKuDk8An86q6IcAcCiEDFPmAOe+QaE1RpvUOh9I2UcevXvkzTlijFd24A9807PiV0jKuE1qLnnBUinPTujafrfSWj3N9aQ3DzWiEmRd2MjnvSLeH\/TEXmMuk22WGCMf2pIbf9X6DJE4sdVs3WbjbuIG73qn+sfDfUoNMXqHTW+Os7gGWREHzRc+3qKtafw70BwGfThEN4fbG20KR9qkXhzcpP0zNbYVltriWDGdwKhqk\/9k=",
+		"title": "Facebook",
+		"body": "Jonny Pryer mentioned you in a comment.",
+		"application_name": "Facebook",
+		"package_name": "com.facebook.katana",
+		"notification_id": "0",
+		"notification_tag": "c3Rvcnk6NTE0Mzc1MjY0OjE1MjAzNTI3ODg0MjAxNjY6NDUxNzYxNzExNTI2Njg3"
+	}
+}
+
+
+{
+	"type": "push",
+	"targets": ["stream"],
+	"push": {
+		"notification_id": "0",
+		"notification_tag": "c3Rvcnk6NTE0Mzc1MjY0OjE1MjAzNTI3ODg0MjAxNjY6NDUxNzYxNzExNTI2Njg3",
+		"package_name": "com.facebook.katana",
+		"source_device_iden": "ujCrQd28ARosjAiVsKnSTs",
+		"source_user_iden": "ujCrQd28ARo",
+		"type": "dismissal"
+	}
+}
