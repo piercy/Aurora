@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Aurora.Utils;
 
-namespace Plugin_Example.Layers
+namespace Plugin_PushBullet.Layers
 {
     /// <summary>
     /// Interaction logic for Control_DefaultLayer.xaml
@@ -27,7 +27,7 @@ namespace Plugin_Example.Layers
             InitializeComponent();
         }
 
-        public Control_ExampleLayer(ExampleLayerHandler datacontext)
+        public Control_ExampleLayer(PushBulletLayerHandler datacontext)
         {
             InitializeComponent();
 
@@ -36,10 +36,10 @@ namespace Plugin_Example.Layers
 
         public void SetSettings()
         {
-            if(this.DataContext is ExampleLayerHandler && !settingsset)
+            if(this.DataContext is PushBulletLayerHandler && !settingsset)
             {
-                this.ColorPicker_primaryColor.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as ExampleLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
-                this.KeySequence_keys.Sequence = (this.DataContext as ExampleLayerHandler).Properties._Sequence;
+                this.ColorPicker_primaryColor.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
+                this.KeySequence_keys.Sequence = (this.DataContext as PushBulletLayerHandler).Properties._Sequence;
 
                 settingsset = true;
             }
@@ -47,14 +47,20 @@ namespace Plugin_Example.Layers
 
         private void ColorPicker_primaryColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
-            if (IsLoaded && settingsset && this.DataContext is ExampleLayerHandler && sender is Xceed.Wpf.Toolkit.ColorPicker && (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue)
-                (this.DataContext as ExampleLayerHandler).Properties._PrimaryColor = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
+            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Xceed.Wpf.Toolkit.ColorPicker && (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue)
+                (this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
         }
+        private void ColorPicker_secondaryColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Xceed.Wpf.Toolkit.ColorPicker && (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue)
+                (this.DataContext as PushBulletLayerHandler).Properties._SecondaryColor = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
+        }
+
 
         private void KeySequence_keys_SequenceUpdated(object sender, EventArgs e)
         {
-            if (IsLoaded && settingsset && this.DataContext is ExampleLayerHandler && sender is Aurora.Controls.KeySequence)
-                (this.DataContext as ExampleLayerHandler).Properties._Sequence = (sender as Aurora.Controls.KeySequence).Sequence;
+            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Aurora.Controls.KeySequence)
+                (this.DataContext as PushBulletLayerHandler).Properties._Sequence = (sender as Aurora.Controls.KeySequence).Sequence;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

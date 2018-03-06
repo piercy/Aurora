@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "..\NAudio\NAudio\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseKeyHook", "..\GlobalMouseKeyHook\MouseKeyHook\MouseKeyHook.csproj", "{F52AA97E-180A-40ED-8F2B-09080171D6C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin-Pushbullet", "Plugin-Pushbullet\Plugin-Pushbullet.csproj", "{E8300655-9A17-41D8-8517-5873E18E280F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin-PushBullet", "Plugin-Pushbullet\Plugin-PushBullet.csproj", "{E8300655-9A17-41D8-8517-5873E18E280F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

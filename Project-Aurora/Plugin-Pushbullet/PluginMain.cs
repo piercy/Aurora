@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Aurora.Profiles;
-using Plugin_Example.Layers;
 using Aurora.Settings;
-using Plugin_Pushbullet.Pushbullet;
+using Plugin_PushBullet.Layers;
+using Plugin_PushBullet.PushBullet;
 
-namespace Plugin_Example
+namespace Plugin_PushBullet
 {
     public class PluginMain : IPlugin
     {
-        public string ID { get; private set; } = "PushbulletPlugin";
+        public string ID { get; private set; } = "PushBulletPlugin";
 
-        public string Title { get; private set; } = "Pushbullet Plugin";
+        public string Title { get; private set; } = "PushBullet Plugin";
 
         public string Author { get; private set; } = "Piercy";
 
@@ -39,7 +39,7 @@ namespace Plugin_Example
         {
             if (manager is LightingStateManager)
             {
-                ((LightingStateManager)manager).RegisterLayerHandler(new LayerHandlerEntry("ExampleLayer", "Example Layer", typeof(ExampleLayerHandler)));
+                ((LightingStateManager)manager).RegisterLayerHandler(new LayerHandlerEntry("ExampleLayer", "Example Layer", typeof(PushBulletLayerHandler)));
             }
         }
     }

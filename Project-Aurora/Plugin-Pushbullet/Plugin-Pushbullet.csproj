@@ -7,8 +7,8 @@
     <ProjectGuid>{E8300655-9A17-41D8-8517-5873E18E280F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Plugin_Pushbullet</RootNamespace>
-    <AssemblyName>Plugin-Pushbullet</AssemblyName>
+    <RootNamespace>Plugin_PushBullet</RootNamespace>
+    <AssemblyName>Plugin-PushBullet</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -58,7 +58,7 @@
     <Compile Include="Layers\Control_ExampleLayer.xaml.cs">
       <DependentUpon>Control_ExampleLayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layers\ExampleLayerHandler.cs" />
+    <Compile Include="Layers\PushBulletLayerHandler.cs" />
     <Compile Include="Models\PushBulletBase.cs" />
     <Compile Include="PluginMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Aurora.Utils;
 using Newtonsoft.Json;
-using Plugin_Pushbullet.Models;
+using Plugin_PushBullet.Models;
 using WebSocketSharp;
 
-namespace Plugin_Pushbullet.Pushbullet
+namespace Plugin_PushBullet.PushBullet
 {
     static class DataStream
     {
@@ -50,12 +50,21 @@ namespace Plugin_Pushbullet.Pushbullet
                     {
 
                         if (!Calls.Contains(incomingObject.Push.notification_id))
+                        {
+                            Console.WriteLine("Adding Call:" + incomingObject.Push.notification_id);
                             Calls.Add(incomingObject.Push.notification_id);
+                        }
+
+                            
 
                     } else if (incomingObject.Push.Type == "dismissal")
                     {
+
                         if (Calls.Contains(incomingObject.Push.notification_id))
+                        {
+                            Console.WriteLine("Removing Call:" + incomingObject.Push.notification_id);
                             Calls.Remove(incomingObject.Push.notification_id);
+                        }
                     }
                 }
             }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plugin_Pushbullet.Models
+namespace Plugin_PushBullet.Models
 {
     class PushBulletBase
     {
