@@ -38,6 +38,7 @@ namespace Plugin_Example.Layers
         {
             if(this.DataContext is ExampleLayerHandler && !settingsset)
             {
+                
                 this.ColorPicker_primaryColor.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as ExampleLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
                 this.KeySequence_keys.Sequence = (this.DataContext as ExampleLayerHandler).Properties._Sequence;
 

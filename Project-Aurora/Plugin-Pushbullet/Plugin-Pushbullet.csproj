@@ -55,8 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Layers\Control_ExampleLayer.xaml.cs">
-      <DependentUpon>Control_ExampleLayer.xaml</DependentUpon>
+    <Compile Include="Layers\Control_PushBullet.xaml.cs">
+      <DependentUpon>Control_PushBullet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layers\PushBulletLayerHandler.cs" />
     <Compile Include="Models\MobileApplicationType.cs" />
@@ -80,7 +80,7 @@
     <Folder Include="Profiles\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Layers\Control_ExampleLayer.xaml">
+    <Page Include="Layers\Control_PushBullet.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -95,6 +95,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)..\build\debug\Plugins\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\build\debug\Plugins\$(ProjectName).pdb"</PostBuildEvent>
+copy /Y "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\build\debug\Plugins\$(ProjectName).pdb"
+copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)..\build\debug\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\build\debug\$(ProjectName).pdb"</PostBuildEvent>
   </PropertyGroup>
 </Project>

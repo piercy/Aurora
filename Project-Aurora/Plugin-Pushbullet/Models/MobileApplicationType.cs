@@ -2,11 +2,11 @@
 {
     public enum MobileApplicationType
     {
-        None,
-        Phone,
-        Email,
-        Whatsapp,
-        Snapchat,
-        Facebook
+        None = 0,
+        Phone = 1,
+        Email = 2,
+        Whatsapp = 3,
+        Snapchat = 4,
+        Facebook = 5
     }
 }

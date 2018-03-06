@@ -16,18 +16,19 @@ namespace Plugin_PushBullet.Layers
 {
     public class PushBulletLayerHandlerProperties : LayerHandlerProperties<PushBulletLayerHandlerProperties>
     {
+      
+
         public PushBulletLayerHandlerProperties() : base()
         {
-         
+
 
         }
 
         public PushBulletLayerHandlerProperties(bool assign_default = false) : base(assign_default) { }
 
-        public Color SelectedColor { get; set; }
-
+        
         public MobileApplicationType SelectedApplication { get; set; }
-        public KeySequence SelectedKeys { get; set; }
+
     }
 
     public class PushBulletLayerHandler : LayerHandler<PushBulletLayerHandlerProperties>
@@ -39,14 +40,14 @@ namespace Plugin_PushBullet.Layers
 
         protected override UserControl CreateControl()
         {
-            return new Control_ExampleLayer(this);
+            return new Control_PushBullet(this);
         }
 
         public override EffectLayer Render(IGameState gamestate)
         {
             EffectLayer solidcolorLayer = new EffectLayer();
 
-
+            
 
 
             solidcolorLayer = processRenderForApplication(solidcolorLayer, Properties.SelectedApplication);
@@ -62,7 +63,7 @@ namespace Plugin_PushBullet.Layers
             if (DataStream.ActiveNotificationsList.ContainsKey(mobileApplicationType))
             {
                 if (DataStream.ActiveNotificationsList[mobileApplicationType].Count > 0)
-                    solidcolorLayer.Set(Properties.SelectedKeys, Properties.SelectedColor);
+                    solidcolorLayer.Set(Properties.Sequence, Properties.PrimaryColor);
             }
             return solidcolorLayer;
         }

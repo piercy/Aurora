@@ -6,19 +6,20 @@
              xmlns:local="clr-namespace:Plugin_PushBullet.Layers"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:Controls="clr-namespace:Aurora.Controls;assembly=Aurora"
-             x:Class="Plugin_PushBullet.Layers.Control_ExampleLayer"
+             x:Class="Plugin_PushBullet.Layers.Control_PushBullet"
              mc:Ignorable="d" Loaded="UserControl_Loaded">
     <Grid>
         <StackPanel>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Notification Type:" VerticalAlignment="Top" />
             <ComboBox x:Name="ComboBox_NotificationType" SelectionChanged="ComboBox_NotificationType_OnSelectionChanged">
                 <ComboBoxItem Content="PhoneCall"/>
+                <ComboBoxItem Content="Email"/>
                 <ComboBoxItem Content="Whatsapp"/>
                 <ComboBoxItem Content="Snapchat"/>
-                <ComboBoxItem Content="Email"/>
                 <ComboBoxItem Content="Facebook"/>
             </ComboBox>
-            
+
+
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Color:" VerticalAlignment="Top" />
             <xctk:ColorPicker x:Name="ColorPicker_Color" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="139" ColorMode="ColorCanvas" SelectedColorChanged="ColorPicker_Color_SelectedColorChanged" UsingAlphaChannel="True"/>
 
