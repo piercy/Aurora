@@ -82,6 +82,15 @@ namespace Plugin_PushBullet.PushBullet
                     return MobileApplicationType.Email;
                 case "com.whatsapp":
                     return MobileApplicationType.Whatsapp;
+                case "com.facebook.katana":
+                case "com.facebook.orca":
+                    return MobileApplicationType.Facebook;
+                case "com.snapchat.android":
+                    return MobileApplicationType.Snapchat;
+                   
+
+
+
             }
             return MobileApplicationType.None;
         }

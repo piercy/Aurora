@@ -39,7 +39,7 @@ namespace Plugin_PushBullet
         {
             if (manager is LightingStateManager)
             {
-                ((LightingStateManager)manager).RegisterLayerHandler(new LayerHandlerEntry("ExampleLayer", "Example Layer", typeof(PushBulletLayerHandler)));
+                ((LightingStateManager)manager).RegisterLayerHandler(new LayerHandlerEntry("PushBulletLayer", "PushBullet Layer", typeof(PushBulletLayerHandler)));
             }
         }
     }

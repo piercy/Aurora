@@ -23,7 +23,7 @@
             <xctk:ColorPicker x:Name="ColorPicker_Color" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="139" ColorMode="ColorCanvas" SelectedColorChanged="ColorPicker_Color_SelectedColorChanged" UsingAlphaChannel="True"/>
 
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Keys:" VerticalAlignment="Top" />
-            <Controls:KeySequence x:Name="Selected_keys" HorizontalAlignment="Left" Width="230" RecordingTag="PushBulletLayer" Title="Affected Keys" SequenceUpdated="Selected_keys_SequenceUpdated"/>
+            <Controls:KeySequence x:Name="Selected_keys" HorizontalAlignment="Left" Width="230" RecordingTag="PushBulletLayer" Title="Affected Keys"  SequenceUpdated="Selected_keys_SequenceUpdated" />
             
         </StackPanel>
     </Grid>

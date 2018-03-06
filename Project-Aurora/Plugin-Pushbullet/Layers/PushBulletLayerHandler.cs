@@ -18,15 +18,16 @@ namespace Plugin_PushBullet.Layers
     {
         public PushBulletLayerHandlerProperties() : base()
         {
-            ApplicationKeys = new Dictionary<MobileApplicationType, KeySequence>();
-            ApplicationColors = new Dictionary<MobileApplicationType, Color>();
+         
+
         }
 
         public PushBulletLayerHandlerProperties(bool assign_default = false) : base(assign_default) { }
 
-        public Dictionary<MobileApplicationType, Color> ApplicationColors { get; set; }
+        public Color SelectedColor { get; set; }
 
-        public Dictionary<MobileApplicationType, KeySequence> ApplicationKeys { get; set; }
+        public MobileApplicationType SelectedApplication { get; set; }
+        public KeySequence SelectedKeys { get; set; }
     }
 
     public class PushBulletLayerHandler : LayerHandler<PushBulletLayerHandlerProperties>
@@ -34,9 +35,6 @@ namespace Plugin_PushBullet.Layers
         public PushBulletLayerHandler()
         {
             _ID = "PushBulletLayer";
-
-          
-
         }
 
         protected override UserControl CreateControl()
@@ -51,11 +49,7 @@ namespace Plugin_PushBullet.Layers
 
 
 
-            solidcolorLayer = processRenderForApplication(solidcolorLayer, MobileApplicationType.Phone);
-            solidcolorLayer = processRenderForApplication(solidcolorLayer, MobileApplicationType.Whatsapp);
-            solidcolorLayer = processRenderForApplication(solidcolorLayer, MobileApplicationType.Email);
-            solidcolorLayer = processRenderForApplication(solidcolorLayer, MobileApplicationType.Snapchat);
-            solidcolorLayer = processRenderForApplication(solidcolorLayer, MobileApplicationType.Facebook);
+            solidcolorLayer = processRenderForApplication(solidcolorLayer, Properties.SelectedApplication);
 
 
 
@@ -64,10 +58,11 @@ namespace Plugin_PushBullet.Layers
 
         private EffectLayer processRenderForApplication(EffectLayer solidcolorLayer, MobileApplicationType mobileApplicationType)
         {
+            
             if (DataStream.ActiveNotificationsList.ContainsKey(mobileApplicationType))
             {
                 if (DataStream.ActiveNotificationsList[mobileApplicationType].Count > 0)
-                    solidcolorLayer.Set(Properties.ApplicationKeys[mobileApplicationType], Properties.ApplicationColors[mobileApplicationType]);
+                    solidcolorLayer.Set(Properties.SelectedKeys, Properties.SelectedColor);
             }
             return solidcolorLayer;
         }

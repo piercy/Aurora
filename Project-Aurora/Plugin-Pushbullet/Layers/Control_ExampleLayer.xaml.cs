@@ -21,8 +21,7 @@ namespace Plugin_PushBullet.Layers
     /// </summary>
     public partial class Control_ExampleLayer : UserControl
     {
-        private bool settingsset = false;
-        private MobileApplicationType CurrentNotificationType = MobileApplicationType.None;
+        private bool settingsset = false;   private MobileApplicationType CurrentNotificationType = MobileApplicationType.None;
 
         public Control_ExampleLayer()
         {
@@ -41,7 +40,7 @@ namespace Plugin_PushBullet.Layers
             if(this.DataContext is PushBulletLayerHandler && !settingsset)
             {
                 this.ColorPicker_Color.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
-                this.Selected_keys.Sequence = (this.DataContext as PushBulletLayerHandler).Properties.;
+                this.Selected_keys.Sequence = (this.DataContext as PushBulletLayerHandler).Properties._Sequence;
 
                 settingsset = true;
             }
@@ -51,17 +50,17 @@ namespace Plugin_PushBullet.Layers
         {
             if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler &&
                 sender is Xceed.Wpf.Toolkit.ColorPicker &&
-                (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue && CurrentNotificationType != MobileApplicationType.None)
+                (sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.HasValue)
             {
 
-                (this.DataContext as PushBulletLayerHandler).Properties.ApplicationColors[CurrentNotificationType] = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
+                (this.DataContext as PushBulletLayerHandler).Properties.SelectedColor = ColorUtils.MediaColorToDrawingColor((sender as Xceed.Wpf.Toolkit.ColorPicker).SelectedColor.Value);
             }
         }
 
         private void Selected_keys_SequenceUpdated(object sender, EventArgs e)
         {
-            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Aurora.Controls.KeySequence && CurrentNotificationType != MobileApplicationType.None)
-                (this.DataContext as PushBulletLayerHandler).Properties.ApplicationKeys[CurrentNotificationType] = (sender as Aurora.Controls.KeySequence).Sequence;
+            if (IsLoaded && settingsset && this.DataContext is PushBulletLayerHandler && sender is Aurora.Controls.KeySequence)
+                (this.DataContext as PushBulletLayerHandler).Properties.SelectedKeys = (sender as Aurora.Controls.KeySequence).Sequence;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -79,19 +78,19 @@ namespace Plugin_PushBullet.Layers
             switch (item.Content?.ToString())
             {
                 case "PhoneCall":
-                    CurrentNotificationType = MobileApplicationType.Phone;
+                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Phone;
                     break;
                 case "Whatsapp":
-                    CurrentNotificationType = MobileApplicationType.Whatsapp;
+                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Whatsapp;
                     break;
                 case "Email":
-                    CurrentNotificationType = MobileApplicationType.Email;
+                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Email;
                     break;
                 case "Snapchat":
-                    CurrentNotificationType = MobileApplicationType.Snapchat;
+                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Snapchat;
                     break;
                 case "Facebook":
-                    CurrentNotificationType = MobileApplicationType.Facebook;
+                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Facebook;
                     break;
             }
         }
