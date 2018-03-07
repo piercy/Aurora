@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using Aurora.EffectsEngine;
 using Aurora.Profiles;
 using Aurora.Settings;
+using Newtonsoft.Json;
 using Plugin_PushBullet.Models;
 using Plugin_PushBullet.PushBullet;
 
@@ -27,7 +29,9 @@ namespace Plugin_PushBullet.Layers
         public PushBulletLayerHandlerProperties(bool assign_default = false) : base(assign_default) { }
 
         
-        public MobileApplicationType SelectedApplication { get; set; }
+        public string SelectedApplication { get; set; }
+
+        public PushBulletSettings Settings { get; set; }
 
     }
 
@@ -38,13 +42,24 @@ namespace Plugin_PushBullet.Layers
         private Color current_primary_color = Color.Transparent;
         private Color current_secondary_color = Color.Transparent;
 
+        private readonly string _settingsSavePath = string.Empty;
+    
+
+
         public PushBulletLayerHandler()
         {
             _ID = "PushBulletLayer";
+            _settingsSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Aurora", "Plugin-PushBulletSettings.json");
+
+            LoadSettings();
+            DataStream.StartListening(Properties.Settings);
         }
 
         protected override UserControl CreateControl()
         {
+            if (this.Properties.Settings == null)
+                LoadSettings();
+
             return new Control_PushBullet(this);
         }
 
@@ -62,12 +77,12 @@ namespace Plugin_PushBullet.Layers
             return solidcolorLayer;
         }
 
-        private EffectLayer processRenderForApplication(EffectLayer breathing_layer, MobileApplicationType mobileApplicationType)
+        private EffectLayer processRenderForApplication(EffectLayer breathing_layer, string notificationType)
         {
             
-            if (DataStream.ActiveNotificationsList.ContainsKey(mobileApplicationType))
+            if (DataStream.ActiveNotificationsList.ContainsKey(notificationType))
             {
-                if (DataStream.ActiveNotificationsList[mobileApplicationType].Count > 0)
+                if (DataStream.ActiveNotificationsList[notificationType].Count > 0)
                 {
                     var effectSpeed = 3.0f;
 
@@ -80,6 +95,39 @@ namespace Plugin_PushBullet.Layers
                 }
             }
             return breathing_layer;
+        }
+        private void LoadSettings()
+        {
+            if (Properties.Settings == null)
+            {
+                var settingsType = typeof(PushBulletSettings);
+                if (File.Exists(_settingsSavePath))
+                {
+                    try
+                    {
+                        Properties.Settings = (PushBulletSettings) JsonConvert.DeserializeObject(
+                            File.ReadAllText(_settingsSavePath), settingsType,
+                            new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
+                    }
+                    catch (Exception exc)
+                    {
+                        Properties.Settings = new PushBulletSettings(true);
+                        SaveSettings();
+                    }
+                }
+                else
+                {
+                    Properties.Settings = new PushBulletSettings(true);
+                    SaveSettings();
+                }
+            }
+        }
+        void SaveSettings()
+        {
+            if(Properties.Settings == null)
+                Properties.Settings = new PushBulletSettings(true);
+
+            File.WriteAllText(_settingsSavePath, JsonConvert.SerializeObject(Properties.Settings, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented }));
         }
 
 

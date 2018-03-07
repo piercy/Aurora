@@ -11,13 +11,7 @@
     <Grid>
         <StackPanel>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Notification Type:" VerticalAlignment="Top" />
-            <ComboBox x:Name="ComboBox_NotificationType" SelectionChanged="ComboBox_NotificationType_OnSelectionChanged">
-                <ComboBoxItem Content="PhoneCall"/>
-                <ComboBoxItem Content="Email"/>
-                <ComboBoxItem Content="Whatsapp"/> 
-                <ComboBoxItem Content="Snapchat"/>
-                <ComboBoxItem Content="Facebook"/>
-            </ComboBox>
+            <ComboBox x:Name="ComboBox_NotificationType" SelectionChanged="ComboBox_NotificationType_OnSelectionChanged" SelectedValuePath="Content"></ComboBox>
 
 
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Color:" VerticalAlignment="Top" />

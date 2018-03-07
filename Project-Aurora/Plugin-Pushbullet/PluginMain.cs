@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Aurora;
 using Aurora.Profiles;
 using Aurora.Settings;
+using Newtonsoft.Json;
 using Plugin_PushBullet.Layers;
+using Plugin_PushBullet.Models;
 using Plugin_PushBullet.PushBullet;
 
 namespace Plugin_PushBullet
@@ -22,7 +26,10 @@ namespace Plugin_PushBullet
 
         private IPluginHost pluginHost;
 
-        public IPluginHost PluginHost { get { return pluginHost; }
+      
+
+    
+        public IPluginHost PluginHost { get { return pluginHost; }  
             set {
                 pluginHost = value;
                 //Add stuff to the plugin manager
@@ -31,10 +38,8 @@ namespace Plugin_PushBullet
 
         public PluginMain()
         {
-            DataStream.StartListening();
-            
+                
         }
-
         public void ProcessManager(object manager)
         {
             if (manager is LightingStateManager)

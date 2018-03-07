@@ -59,9 +59,10 @@
       <DependentUpon>Control_PushBullet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layers\PushBulletLayerHandler.cs" />
-    <Compile Include="Models\MobileApplicationType.cs" />
+    <Compile Include="Models\NotificationTarget.cs" />
     <Compile Include="Models\PushBulletBase.cs" />
     <Compile Include="Models\PushBulletPush.cs" />
+    <Compile Include="Models\PushBulletSettings.cs" />
     <Compile Include="PluginMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pushbullet\DataStream.cs" />

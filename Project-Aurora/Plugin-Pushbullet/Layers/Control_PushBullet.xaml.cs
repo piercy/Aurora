@@ -25,16 +25,23 @@ namespace Plugin_PushBullet.Layers
             InitializeComponent();
 
             this.DataContext = datacontext;
+
         }
 
         public void SetSettings()
         {
             if(this.DataContext is PushBulletLayerHandler && !settingsset)
-            {      
+            {
+                var dataContext = (this.DataContext as PushBulletLayerHandler);
+             
+                foreach (var notificationTarget in dataContext.Properties.Settings.NotificationTargets)
+                {
+                    this.ComboBox_NotificationType.Items.Add(new ComboBoxItem() {Content = notificationTarget.Name});
+                }
 
-                this.ComboBox_NotificationType.SelectedIndex = (int)(this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication-1;
-                this.ColorPicker_Color.SelectedColor = ColorUtils.DrawingColorToMediaColor((this.DataContext as PushBulletLayerHandler).Properties._PrimaryColor ?? System.Drawing.Color.Empty);
-                this.Selected_keys.Sequence = (this.DataContext as PushBulletLayerHandler).Properties._Sequence;
+                this.ComboBox_NotificationType.SelectedValue =   dataContext.Properties.SelectedApplication;
+                this.ColorPicker_Color.SelectedColor = ColorUtils.DrawingColorToMediaColor(dataContext.Properties._PrimaryColor ?? System.Drawing.Color.Empty);
+                this.Selected_keys.Sequence = dataContext.Properties._Sequence;
 
                 settingsset = true;
             }
@@ -69,24 +76,8 @@ namespace Plugin_PushBullet.Layers
         {
             var item = (ComboBoxItem) ComboBox_NotificationType.SelectedItem;
 
-            switch (item.Content?.ToString())
-            {
-                case "PhoneCall":
-                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Phone;
-                    break;
-                case "Whatsapp":
-                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Whatsapp;
-                    break;
-                case "Email":
-                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Email;
-                    break;
-                case "Snapchat":
-                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Snapchat;
-                    break;
-                case "Facebook":
-                    (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = MobileApplicationType.Facebook;
-                    break;
-            }
+            (this.DataContext as PushBulletLayerHandler).Properties.SelectedApplication = item.Content?.ToString();
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Aurora.Settings;
 using Aurora.Utils;
 using Newtonsoft.Json;
 using Plugin_PushBullet.Models;
@@ -15,29 +16,35 @@ namespace Plugin_PushBullet.PushBullet
 
         private const string AccessToken = "o.V04laqnLIsdGMwXzWxkPfMZLw6ue5HyK";
 
-        public static Dictionary<MobileApplicationType, List<int>> ActiveNotificationsList = new Dictionary<MobileApplicationType, List<int>>();
+        public static Dictionary<string, List<int>> ActiveNotificationsList = new Dictionary<string, List<int>>();
 
         static List<string> _excludedTitleList = new List<string>();
 
         private static WebSocket ws = null;
 
+        private static PushBulletSettings _settings;
         static DataStream()
         {
             _excludedTitleList.Add("WhatsApp Web");
         }
 
-        public static void StartListening()
+        public static void StartListening(PushBulletSettings settings)
         {
-            if(ws == null)
-                ws = new WebSocket("wss://stream.pushbullet.com/websocket/" + AccessToken);
+            _settings = settings;
 
-            if (ws != null && !ws.IsAlive)
+            if (_settings != null && !string.IsNullOrEmpty(_settings.PushbulletAccessToken))
             {
-             
+                if (ws == null)
+                    ws = new WebSocket("wss://stream.pushbullet.com/websocket/" + _settings.PushbulletAccessToken);
 
-                ws.OnMessage += Ws_OnMessage;
+                if (ws != null && !ws.IsAlive)
+                {
 
-                ws.Connect();
+
+                    ws.OnMessage += Ws_OnMessage;
+
+                    ws.Connect();
+                }
             }
         }
 
@@ -61,45 +68,30 @@ namespace Plugin_PushBullet.PushBullet
                 Console.WriteLine("Push Title:" + incomingObject.Push.Title);
 
 
-                var mobileApplicationType = GetMobileApplicationType(incomingObject.Push.Package_Name);
+                var notificationType = GetMobileApplicationType(incomingObject.Push.Package_Name);
 
-                if(!ActiveNotificationsList.ContainsKey(mobileApplicationType))
-                    ActiveNotificationsList.Add(mobileApplicationType, new List<int>());
+                if(!ActiveNotificationsList.ContainsKey(notificationType))
+                    ActiveNotificationsList.Add(notificationType, new List<int>());
 
-                ActiveNotificationsList[mobileApplicationType] = HandleApplication(ActiveNotificationsList[mobileApplicationType], incomingObject, mobileApplicationType);
+                ActiveNotificationsList[notificationType] = HandleApplication(ActiveNotificationsList[notificationType], incomingObject, notificationType);
             }
 
 
         }
 
-        private static MobileApplicationType GetMobileApplicationType(string packageName)
+        private static string GetMobileApplicationType(string packageName)
         {
-            switch (packageName)
-            {
-                case "com.google.android.dialer":
-                    return MobileApplicationType.Phone;
-                case "com.google.android.apps.inbox":
-                    return MobileApplicationType.Email;
-                case "com.whatsapp":
-                    return MobileApplicationType.Whatsapp;
-                case "com.facebook.katana":
-                case "com.facebook.orca":
-                    return MobileApplicationType.Facebook;
-                case "com.snapchat.android":
-                    return MobileApplicationType.Snapchat;
-                   
 
+           var notificationType =  _settings.NotificationTargets.SingleOrDefault(x => x.PackageNames.Contains(packageName));
 
-
-            }
-            return MobileApplicationType.None;
+            return notificationType?.Name;
         }
 
-        private static List<int> HandleApplication(List<int> currentList, PushBulletBase incomingObject, MobileApplicationType type)
+        private static List<int> HandleApplication(List<int> currentList, PushBulletBase incomingObject, string notificationType)
         {
             if (incomingObject.Push.Type == "dismissal")
             {
-                Console.WriteLine("Removing: {0} : {1}", type, incomingObject.Push.notification_id);
+                Console.WriteLine("Removing: {0} : {1}", notificationType, incomingObject.Push.notification_id);
                 if (currentList.Contains(incomingObject.Push.notification_id))
                     currentList.Remove(incomingObject.Push.notification_id);
                 
@@ -109,7 +101,7 @@ namespace Plugin_PushBullet.PushBullet
                 
                 if (!_excludedTitleList.Contains(incomingObject.Push.Title))
                 {
-                    Console.WriteLine("Adding: {0} : {1}", type, incomingObject.Push.notification_id);
+                    Console.WriteLine("Adding: {0} : {1}", notificationType, incomingObject.Push.notification_id);
 
                     if (!currentList.Contains(incomingObject.Push.notification_id))
                         currentList.Add(incomingObject.Push.notification_id);
