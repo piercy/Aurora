@@ -33,6 +33,11 @@ namespace Plugin_PushBullet.Layers
 
     public class PushBulletLayerHandler : LayerHandler<PushBulletLayerHandlerProperties>
     {
+        private float current_sine = 0.0f;
+
+        private Color current_primary_color = Color.Transparent;
+        private Color current_secondary_color = Color.Transparent;
+
         public PushBulletLayerHandler()
         {
             _ID = "PushBulletLayer";
@@ -57,15 +62,24 @@ namespace Plugin_PushBullet.Layers
             return solidcolorLayer;
         }
 
-        private EffectLayer processRenderForApplication(EffectLayer solidcolorLayer, MobileApplicationType mobileApplicationType)
+        private EffectLayer processRenderForApplication(EffectLayer breathing_layer, MobileApplicationType mobileApplicationType)
         {
             
             if (DataStream.ActiveNotificationsList.ContainsKey(mobileApplicationType))
             {
                 if (DataStream.ActiveNotificationsList[mobileApplicationType].Count > 0)
-                    solidcolorLayer.Set(Properties.Sequence, Properties.PrimaryColor);
+                {
+                    var effectSpeed = 3.0f;
+
+                    current_sine = (float)Math.Pow(Math.Sin((double)((Aurora.Utils.Time.GetMillisecondsSinceEpoch() % 10000L) / 10000.0f) * 2 * Math.PI * effectSpeed), 2);
+
+                    current_primary_color = Properties.PrimaryColor;
+
+                    breathing_layer.Set(Properties.Sequence, Aurora.Utils.ColorUtils.BlendColors(current_primary_color, current_secondary_color, current_sine));
+
+                }
             }
-            return solidcolorLayer;
+            return breathing_layer;
         }
 
 
