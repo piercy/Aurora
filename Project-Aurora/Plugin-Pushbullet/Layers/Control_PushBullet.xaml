@@ -10,14 +10,20 @@
              mc:Ignorable="d" Loaded="UserControl_Loaded">
     <Grid>
         <StackPanel>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Notification Type:" VerticalAlignment="Top" />
+            <TextBlock x:Name="lblHelp"   HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter your pushbullet access token to continue.  After please hit save and then restart Aurora." VerticalAlignment="Top" Visibility="Collapsed" />
+            <TextBlock x:Name="lblAccessToken"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pushbullet Access Token:" VerticalAlignment="Top" Visibility="Collapsed" />
+            <TextBox x:Name="tbAccessToken" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top"  Visibility="Collapsed"  />
+            <Button x:Name="btnUpdateAccessToken" Content="Save" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Width="75" Click="btnUpdateAccessToken_Click"  Visibility="Collapsed" />
+      
+
+            <TextBlock x:Name="lblComboBox"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="Notification Type:" VerticalAlignment="Top" />
             <ComboBox x:Name="ComboBox_NotificationType" SelectionChanged="ComboBox_NotificationType_OnSelectionChanged" SelectedValuePath="Content"></ComboBox>
 
 
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Color:" VerticalAlignment="Top" />
+            <TextBlock x:Name="lblColor"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="Color:" VerticalAlignment="Top" />
             <xctk:ColorPicker x:Name="ColorPicker_Color" HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="139" ColorMode="ColorCanvas" SelectedColorChanged="ColorPicker_Color_SelectedColorChanged" UsingAlphaChannel="True"/>
 
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Keys:" VerticalAlignment="Top" />
+            <TextBlock x:Name="lblKeys"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="Keys:" VerticalAlignment="Top" />
             <Controls:KeySequence x:Name="Selected_keys" HorizontalAlignment="Left" Width="230" RecordingTag="PushBulletLayer" Title="Affected Keys"  SequenceUpdated="Selected_keys_SequenceUpdated" />
             
         </StackPanel>

@@ -33,6 +33,9 @@ namespace Plugin_PushBullet.Layers
 
         public PushBulletSettings Settings { get; set; }
 
+        public string SettingsSavePath { get; set; }
+
+
     }
 
     public class PushBulletLayerHandler : LayerHandler<PushBulletLayerHandlerProperties>
@@ -42,14 +45,14 @@ namespace Plugin_PushBullet.Layers
         private Color current_primary_color = Color.Transparent;
         private Color current_secondary_color = Color.Transparent;
 
-        private readonly string _settingsSavePath = string.Empty;
+      
     
 
 
         public PushBulletLayerHandler()
         {
             _ID = "PushBulletLayer";
-            _settingsSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Aurora", "Plugin-PushBulletSettings.json");
+            Properties.SettingsSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Aurora", "Plugin-PushBulletSettings.json");
 
             LoadSettings();
             DataStream.StartListening(Properties.Settings);
@@ -59,6 +62,8 @@ namespace Plugin_PushBullet.Layers
         {
             if (this.Properties.Settings == null)
                 LoadSettings();
+
+            Properties.SettingsSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Aurora", "Plugin-PushBulletSettings.json");
 
             return new Control_PushBullet(this);
         }
@@ -101,12 +106,12 @@ namespace Plugin_PushBullet.Layers
             if (Properties.Settings == null)
             {
                 var settingsType = typeof(PushBulletSettings);
-                if (File.Exists(_settingsSavePath))
+                if (File.Exists(Properties.SettingsSavePath))
                 {
                     try
                     {
                         Properties.Settings = (PushBulletSettings) JsonConvert.DeserializeObject(
-                            File.ReadAllText(_settingsSavePath), settingsType,
+                            File.ReadAllText(Properties.SettingsSavePath), settingsType,
                             new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
                     }
                     catch (Exception exc)
@@ -127,7 +132,7 @@ namespace Plugin_PushBullet.Layers
             if(Properties.Settings == null)
                 Properties.Settings = new PushBulletSettings(true);
 
-            File.WriteAllText(_settingsSavePath, JsonConvert.SerializeObject(Properties.Settings, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented }));
+            File.WriteAllText(Properties.SettingsSavePath, JsonConvert.SerializeObject(Properties.Settings, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented }));
         }
 
 

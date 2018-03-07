@@ -70,10 +70,14 @@ namespace Plugin_PushBullet.PushBullet
 
                 var notificationType = GetMobileApplicationType(incomingObject.Push.Package_Name);
 
-                if(!ActiveNotificationsList.ContainsKey(notificationType))
-                    ActiveNotificationsList.Add(notificationType, new List<int>());
+                if (!string.IsNullOrEmpty(notificationType))
+                {
+                    if (!ActiveNotificationsList.ContainsKey(notificationType))
+                        ActiveNotificationsList.Add(notificationType, new List<int>());
 
-                ActiveNotificationsList[notificationType] = HandleApplication(ActiveNotificationsList[notificationType], incomingObject, notificationType);
+                    ActiveNotificationsList[notificationType] =
+                        HandleApplication(ActiveNotificationsList[notificationType], incomingObject, notificationType);
+                }
             }
 
 
