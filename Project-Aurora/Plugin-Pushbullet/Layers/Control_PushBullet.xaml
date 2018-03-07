@@ -14,7 +14,7 @@
             <ComboBox x:Name="ComboBox_NotificationType" SelectionChanged="ComboBox_NotificationType_OnSelectionChanged">
                 <ComboBoxItem Content="PhoneCall"/>
                 <ComboBoxItem Content="Email"/>
-                <ComboBoxItem Content="Whatsapp"/>
+                <ComboBoxItem Content="Whatsapp"/> 
                 <ComboBoxItem Content="Snapchat"/>
                 <ComboBoxItem Content="Facebook"/>
             </ComboBox>

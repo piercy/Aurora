@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Aurora.Utils
 {
@@ -53,7 +54,14 @@ namespace Aurora.Utils
                 default:
                     if (!typeName.Contains("Overlays") && new Regex(@"Aurora.Profiles.\w+.\w+Settings").IsMatch(typeName))
                         return base.BindToType(assemblyName, typeName.Replace("Settings", "Profile"));
-                    return base.BindToType(assemblyName, typeName);
+
+                    //if(assemblyName.StartsWith("Plugin-"))
+                    //{
+                    //    var assembly = Assembly.LoadFrom(Environment.CurrentDirectory + "/Plugins/" + assemblyName + ".dll");
+                    //    return base.
+                    //}
+                    //else
+                        return base.BindToType(assemblyName, typeName);
             }
         }
     }

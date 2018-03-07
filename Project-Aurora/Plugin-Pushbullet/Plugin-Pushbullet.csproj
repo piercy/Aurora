@@ -96,7 +96,6 @@
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)..\build\debug\Plugins\$(ProjectName).dll"
 copy /Y "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\build\debug\Plugins\$(ProjectName).pdb"
-copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)..\build\debug\$(ProjectName).dll"
-copy /Y "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\build\debug\$(ProjectName).pdb"</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

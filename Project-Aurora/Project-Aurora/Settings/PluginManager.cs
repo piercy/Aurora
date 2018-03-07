@@ -117,7 +117,7 @@ namespace Aurora.Settings
     {
         public List<IShortcut> PredefinedShortcuts { get; protected set; } = new List<IShortcut>();
 
-        public const string PluginDirectory = "Plugins";
+        public const string PluginDirectory = "";
 
         public Dictionary<string, IPlugin> Plugins { get; set; } = new Dictionary<string, IPlugin>();
 
@@ -159,7 +159,7 @@ namespace Aurora.Settings
                 return;
             }
 
-            foreach (string pathPlugin in Directory.EnumerateFiles(dir, "*.dll", SearchOption.TopDirectoryOnly))
+            foreach (string pathPlugin in Directory.EnumerateFiles(dir, "Plugin-*.dll", SearchOption.TopDirectoryOnly))
             {
                 try
                 {
