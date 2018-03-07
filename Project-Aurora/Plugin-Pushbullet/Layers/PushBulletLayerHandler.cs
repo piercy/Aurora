@@ -60,10 +60,10 @@ namespace Plugin_PushBullet.Layers
 
         protected override UserControl CreateControl()
         {
+            Properties.SettingsSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Aurora", "Plugin-PushBulletSettings.json");
+
             if (this.Properties.Settings == null)
                 LoadSettings();
-
-            Properties.SettingsSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Aurora", "Plugin-PushBulletSettings.json");
 
             return new Control_PushBullet(this);
         }
