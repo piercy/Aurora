@@ -14,8 +14,6 @@ namespace Plugin_PushBullet.PushBullet
     static class DataStream
     {
 
-        private const string AccessToken = "o.V04laqnLIsdGMwXzWxkPfMZLw6ue5HyK";
-
         public static Dictionary<string, List<int>> ActiveNotificationsList = new Dictionary<string, List<int>>();
 
         static List<string> _excludedTitleList = new List<string>();
